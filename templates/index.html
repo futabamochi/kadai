@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>天気予報アプリ</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="weather-app">
+
+        <h1>🌤️ 天気予報</h1>
+
+        <p class="description">
+            都市名を入力してください
+        </p>
+
+        <form method="POST">
+
+            <input type="text" name="city" placeholder="例：東京" required>
+
+            <button type="submit">
+                天気を見る
+            </button>
+
+        </form>
+
+
+        {% if weather %}
+
+        <div class="weather-card">
+
+            <h2>
+                {{ weather.city }}
+            </h2>
+
+            <p class="country">
+                {{ weather.country }}
+            </p>
+
+            <img src="https:{{ weather.icon }}" alt="{{ weather.condition }}">
+
+            <p class="temperature">
+                {{ weather.temperature }}℃
+            </p>
+
+            <p class="condition">
+                {{ weather.condition }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+        {% if error %}
+
+        <p class="error">
+            {{ error }}
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
